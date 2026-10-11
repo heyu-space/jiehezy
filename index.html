@@ -6,6 +6,9 @@
 <title>劫禾 · 资源中心</title>
 <meta name="description" content="劫禾的个人分享页：玩机资源、内核、调度与通用隐藏，提供夸克、迅雷网盘下载。">
 <meta name="theme-color" content="#07080d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="劫禾 · 资源中心">
+<meta property="og:description" content="玩机资源、内核、调度与通用隐藏，夸克/迅雷网盘下载。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%237b7bff%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2738%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27sans-serif%27 font-weight=%27700%27%3E%E5%8A%AB%3C/text%3E%3C/svg%3E">
 <style>
 :root{color-scheme:dark;--bg:#07080d;--side:#0b0d14;--panel:#10121b;--panel2:#151826;--line:#1f2334;--ink:#e9ebf7;--sub:#8b91ad;--mut:#5b617c;--pri:#7b7bff;--sky:#46c2ff;--vio:#b07bff;--barbg:rgba(7,8,13,.82);--openline:#34396a;--glow1:rgba(123,123,255,.16);--glow2:rgba(70,194,255,.08);--tint:rgba(123,123,255,.14);
@@ -108,6 +111,39 @@ a.btn{display:grid;place-items:center;text-decoration:none;text-align:center}
 .empty{display:none;text-align:center;color:var(--mut);padding:22px 0}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--panel2);border:1px solid var(--pri);color:var(--ink);padding:10px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
 .toast.on{opacity:1}
+.feat{margin-bottom:16px;display:flex;flex-direction:column;gap:14px;border-color:var(--openline);background:linear-gradient(135deg,var(--tint),transparent 70%),var(--panel)}
+.feat .fh{display:flex;align-items:center;gap:12px}
+.feat .ic{width:44px;height:44px;border-radius:12px}
+.feat .ic svg{width:22px;height:22px}
+.feat h2{display:block;margin:0;font-size:18px}
+.feat .desc{margin:3px 0 0}
+.feat .btns{padding:0}
+.upd{display:block;margin-top:4px;color:var(--mut);font-size:12px}
+.ft{text-align:center;color:var(--mut);font-size:12px;margin:30px 0 0}
+.row{transition:border-color .25s,transform .25s,box-shadow .25s;animation:up .45s ease both}
+.row:hover{transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(123,123,255,.55)}
+.stat{transition:transform .25s,border-color .25s}
+.stat:hover{transform:translateY(-3px);border-color:var(--openline)}
+.btn.p{position:relative;overflow:hidden}
+.btn.p:after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-20deg);transition:left .7s}
+.btn.p:hover:after{left:130%}
+.btn:active{transform:scale(.97)}
+.av{animation:glow 3.6s ease-in-out infinite alternate}
+@keyframes glow{from{box-shadow:0 0 0 1px rgba(255,255,255,.14) inset,0 6px 16px rgba(123,123,255,.22)}to{box-shadow:0 0 0 1px rgba(255,255,255,.2) inset,0 6px 30px rgba(123,123,255,.65)}}
+@keyframes slideR{from{opacity:0;transform:translateX(-12px)}}
+.nav a{transition:background .2s,color .2s,transform .2s;animation:slideR .45s ease both}
+.nav a:hover{transform:translateX(3px)}
+.nav a:nth-of-type(1){animation-delay:.08s}.nav a:nth-of-type(2){animation-delay:.14s}.nav a:nth-of-type(3){animation-delay:.2s}.nav a:nth-of-type(4){animation-delay:.26s}.nav a:nth-of-type(5){animation-delay:.32s}
+.toast{transform:translate(-50%,12px);transition:opacity .25s,transform .25s}
+.toast.on{transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){.row,.nav a,.av{animation:none}.row:hover,.stat:hover,.nav a:hover{transform:none}.btn.p:after{display:none}}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--ang:360deg}}
+.card.feat{border:1px solid transparent;background:linear-gradient(135deg,var(--tint),transparent 70%) padding-box,linear-gradient(var(--panel),var(--panel)) padding-box,conic-gradient(from var(--ang,0deg),var(--pri),var(--sky),var(--vio),var(--pri)) border-box;animation:up .5s ease both,spin 7s linear infinite}
+.row,.stat{position:relative}
+.row:before,.stat:before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(200px circle at var(--mx,50%) var(--my,50%),var(--tint),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
+.row:hover:before,.stat:hover:before{opacity:1}
+@media (prefers-reduced-motion:reduce){.card.feat{animation:none}}
 @keyframes up{from{opacity:0;transform:translateY(12px)}}
 .stat,.card{animation:up .5s ease both}
 .stat:nth-child(2){animation-delay:.06s}.stat:nth-child(3){animation-delay:.12s}
@@ -176,12 +212,13 @@ a.btn{display:grid;place-items:center;text-decoration:none;text-align:center}
   </div>
   <main id="top">
     <h1>资源中心</h1>
-    <p class="lead">劫禾的个人分享页，资源与教程都在这里。</p>
+    <p class="lead">劫禾的个人分享页，资源与教程都在这里。<span class="upd">最近更新：2026-10-11</span></p>
     <div class="stats">
       <div class="stat"><small>资源</small><b>4<i>个</i></b></div>
       <div class="stat"><small>网盘渠道</small><b>2<i>个</i></b></div>
       <div class="stat"><small>配套教程</small><b>筹备中</b></div>
     </div>
+    <div class="card feat" id="feat"></div>
     <div class="cols">
       <div class="card" id="res"><h2>资源列表<span><button class="tx" id="ea">全部展开</button><span id="cnt"></span></span></h2><div id="list"></div><div class="empty" id="em">没有找到匹配的资源，换个关键词试试</div></div>
       <div class="stack">
@@ -196,16 +233,16 @@ a.btn{display:grid;place-items:center;text-decoration:none;text-align:center}
         <div class="card" id="about"><h2>关于我</h2><p class="about">我很神秘！！！</p></div>
       </div>
     </div>
-  </main>
+  <p class="ft">© 2026 劫禾 · 个人分享页</p></main>
 </div>
 <button class="up" id="up" aria-label="回到顶部"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
 <div class="toast" id="toast"></div>
 <script>
 var items=[
- {n:"玩机资源",d:"顾名思义，玩机应用工具等等。",q:"https://pan.quark.cn/s/f2f116234d57",x:"https://pan.xunlei.com/s/VP2rcjrF_wld3Es-NPWL-nYDA1?pwd=sdde#",t:""},
- {n:"自用耳机",d:"🐷包本人目前在用的内核。",q:"https://pan.quark.cn/s/f837eb774271",x:"https://pan.xunlei.com/s/VP2rcy0N_JlqbnaHmcHC_y-rA1?pwd=b8tj#",t:""},
- {n:"通用调度",d:"🐷包自己调的。",q:"https://pan.quark.cn/s/2b71b4b240c6",x:"https://pan.xunlei.com/s/VP2rdZaRlLNA_4rKqfD_PY-FA1?pwd=v25c#",t:""},
- {n:"通用隐藏",d:"通用 root 环境隐藏。",q:"https://pan.quark.cn/s/c7b3cb37b761",x:"https://pan.xunlei.com/s/VP2rdgr3oml32u08hZ3yCviVA1?pwd=7tnb#",t:""}
+ {n:"玩机资源",d:"顾名思义，玩机应用工具等等。",q:"https://pan.quark.cn/s/9d2eaefaf7ed",x:"https://pan.xunlei.com/s/VP2rcjrF_wld3Es-NPWL-nYDA1?pwd=sdde#",t:""},
+ {n:"自用耳机",d:"🐷包本人目前在用的内核。",q:"https://pan.quark.cn/s/7dd11b1b77f5",x:"https://pan.xunlei.com/s/VP2rcy0N_JlqbnaHmcHC_y-rA1?pwd=b8tj#",t:""},
+ {n:"通用调度",d:"🐷包自己调的。",q:"https://pan.quark.cn/s/97ec2d5ed292",x:"https://pan.xunlei.com/s/VP2rdZaRlLNA_4rKqfD_PY-FA1?pwd=v25c#",t:""},
+ {n:"通用隐藏",d:"通用 root 环境隐藏。",q:"https://pan.quark.cn/s/88d8390eabed",x:"https://pan.xunlei.com/s/VP2rdgr3oml32u08hZ3yCviVA1?pwd=7tnb#",t:""}
 ];
 function bt(u,l,c){return u?'<a class="btn '+c+'" href="'+u+'" target="_blank" rel="noopener">'+l+'</a>':'<button class="btn off">'+l+'（待添加）</button>'}
 var box='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5zM3 8v8l9 5 9-5V8"/></svg>';
@@ -249,6 +286,13 @@ socials.forEach(function(x){
   else{el=document.createElement('button');el.onclick=function(){say(x.n+'主页链接还没添加')}}
   el.className='kvr';el.innerHTML=inner;soc.appendChild(el);
 });
+var feat={n:"劫禾的文件库",d:"我整合的全部资源。",q:"https://pan.quark.cn/s/c3ae2e745c5e",x:"https://pan.xunlei.com/s/VP3dUJje8_AxJDl0_75gp55nA1?pwd=5f2t#"};
+document.getElementById('feat').innerHTML='<div class="fh"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></span><div><h2>'+feat.n+'</h2><p class="desc">'+feat.d+'</p></div></div><div class="btns">'+bt(feat.q,'夸克网盘','p')+bt(feat.x,'迅雷网盘','p')+'</div>';
+document.querySelectorAll('#feat .btn.off').forEach(function(b){b.onclick=function(){say('网盘链接还没添加')}});
+var shr=document.createElement('button');shr.className='kvr';
+shr.innerHTML='<span class="ki"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span><div><small>分享</small><b>分享本页</b></div><span class="go">复制</span>';
+shr.onclick=function(){var u=location.href.split('#')[0];if(navigator.share){navigator.share({title:document.title,url:u}).catch(function(){})}else{try{navigator.clipboard.writeText(u).then(function(){say('网址已复制')},function(){say(u)})}catch(e){say(u)}}};
+document.querySelector('#contact .kv').appendChild(shr);
 var sd=document.getElementById('sd'),sc=document.getElementById('sc');
 function tg(o){sd.classList.toggle('on',o);sc.classList.toggle('on',o)}
 document.getElementById('mb').onclick=function(){tg(!sd.classList.contains('on'))};
@@ -271,6 +315,31 @@ ea.onclick=function(){
   els.forEach(function(x){if(x.el.style.display==='none')return;x.el.classList.toggle('open',open);x.el.querySelector('.top').setAttribute('aria-expanded',open)});
   ea.textContent=open?'全部收起':'全部展开';
 };
+if(typeof io!=='undefined'){try{io.disconnect()}catch(e){}}
+var lock=false,mqd=window.matchMedia('(min-width:900px)');
+['wheel','touchstart','keydown'].forEach(function(ev){window.addEventListener(ev,function(){lock=false},{passive:true})});
+links.forEach(function(a){a.addEventListener('click',function(){lock=true})});
+function spy(){
+ if(lock)return;
+ var d=mqd.matches,ids=d?[0,1]:[0,1,2,3,4],vh=window.innerHeight,c=0;
+ ids.forEach(function(i){if(secs[i].getBoundingClientRect().top<=vh*0.35)c=i});
+ if(!d&&window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)c=4;
+ links.forEach(function(x,k){x.classList.toggle('cur',k===c)});
+}
+window.addEventListener('scroll',spy,{passive:true});
+spy();
+els.forEach(function(x,i){x.el.style.animationDelay=(0.25+i*0.07)+'s'});
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+ document.querySelectorAll('.stat b').forEach(function(b){
+  var t=b.firstChild;
+  if(t&&t.nodeType===3&&isFinite(+t.nodeValue)&&t.nodeValue.trim()!==''){
+   var n=parseInt(t.nodeValue,10),st=null;t.nodeValue='0';
+   var f=function(ts){if(!st)st=ts;var p=Math.min((ts-st)/900,1);t.nodeValue=String(Math.round(n*(1-Math.pow(1-p,3))));if(p<1)requestAnimationFrame(f)};
+   requestAnimationFrame(f);
+  }
+ });
+}
+document.addEventListener('mousemove',function(e){var t=e.target.closest&&e.target.closest('.row,.stat');if(t){var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px')}},{passive:true});
 var upb=document.getElementById('up');
 window.addEventListener('scroll',function(){upb.classList.toggle('on',window.scrollY>420)},{passive:true});
 upb.onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
