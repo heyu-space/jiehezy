@@ -6,7 +6,7 @@
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#101015">
   <title>劫禾 · 资源中心</title>
-  <meta name="description" content="劫禾的个人资源收藏：玩机工具、自用内核、调度与 Root 环境隐藏。分类查找，通过夸克或迅雷网盘获取。">
+  <meta name="description" content="劫禾的个人资源收藏：玩机工具、自用内核、调度与 Root 环境隐藏。分类查找，通过夸克网盘获取。">
   <meta property="og:type" content="website">
   <meta property="og:title" content="劫禾 · 资源中心">
   <meta property="og:description" content="探索热爱，让玩机更简单。常用工具、自用内核与实用调度，认真整理在这里。">
@@ -224,6 +224,48 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
 @media(prefers-reduced-motion:no-preference){.hero-copy{animation:arrive .5s ease both}.featured{animation:arrive .55s .06s ease both}.archive-float{animation:float 8s ease-in-out infinite}.archive-spark{animation:float 8s -4s ease-in-out infinite}.resource[open] .resource-body{animation:details-in .23s ease both}@keyframes arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}@keyframes details-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media print{.sidebar,.topbar,.hero-art,.hero-actions,.filters,.search-box,.back-top,.footer-right{display:none!important}.workspace{margin:0}.content{padding:0}.intro-grid,.resource-layout{display:block}.hero{padding:20px 0}.featured,.side-cards{margin-top:20px}.hero h1{font-size:30px}body{background:#fff;color:#111}a[href^="https"]:after{content:" (" attr(href) ")";font-size:9px;overflow-wrap:anywhere}.resource,.featured,.community-card,.social-card{break-inside:avoid}}
+
+/* Announcement dialog and current download availability. */
+html{scrollbar-gutter:stable}
+body.announcement-open{overflow:hidden}
+.button.pending-download:disabled{opacity:1;color:var(--muted);background:transparent;border-color:var(--line);box-shadow:none;cursor:default}
+.button.pending-download:disabled:hover{transform:none;background:transparent;border-color:var(--line)}
+.button.pending-download:disabled:hover .icon{transform:none}
+.notice-trigger{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;padding:6px 10px;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--sub);font-size:12px;transition:background .2s,color .2s}
+.notice-trigger:hover{background:var(--tint);color:var(--accent)}
+.notice-trigger .icon{width:15px;height:15px}
+.announcement-dialog{width:460px;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);padding:0;margin:auto;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;color:var(--text);background:var(--panel);border:1px solid color-mix(in srgb,var(--accent) 24%,var(--line));border-radius:23px;box-shadow:0 32px 110px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.07)}
+.announcement-dialog::backdrop{background:rgba(8,7,17,.66);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.announcement-content{position:relative;padding:33px 31px 0;background:radial-gradient(ellipse at 50% 0%,var(--tint),transparent 65%);text-align:center}
+.announcement-close{position:absolute;top:11px;right:11px;width:37px;height:37px;border-radius:50%;z-index:1}
+.notice-emblem{position:relative;display:grid;place-items:center;width:61px;height:63px;margin:2px auto 20px;border-radius:19px;background:linear-gradient(145deg,#d8ccff,#a78be6);border:1px solid rgba(255,255,255,.3);color:#50377a;box-shadow:0 12px 28px rgba(157,122,229,.17),inset 0 1px 0 rgba(255,255,255,.5);transform:rotate(-7deg)}
+.notice-emblem>.icon{width:29px;height:29px;stroke-width:1.5}
+.notice-emblem-badge{position:absolute;right:-6px;bottom:-4px;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--panel);border:1px solid var(--line);color:var(--accent);transform:rotate(7deg)}
+.notice-emblem-badge .icon{width:13px;height:13px}
+.notice-eyebrow{color:var(--accent);font-size:10px;letter-spacing:.17em;font-weight:600;margin-bottom:8px}
+.announcement-dialog h2{font-size:25px;font-weight:600;line-height:1.5;letter-spacing:.035em}
+.notice-description{margin:12px 0 22px;color:var(--sub);font-size:14px;line-height:1.85}
+.notice-description strong{color:var(--accent);font-weight:600}
+.notice-channels{padding:3px 15px;text-align:left;background:var(--bg);border:1px solid var(--line-soft);border-radius:13px}
+.notice-channel{display:flex;align-items:center;gap:10px;min-height:53px;font-size:13px}
+.notice-channel+.notice-channel{border-top:1px solid var(--line-soft)}
+.notice-channel>.icon{width:17px;height:17px;color:var(--accent)}
+.notice-channel.pending{color:var(--muted)}
+.notice-channel.pending>.icon{color:var(--muted)}
+.channel-state{display:inline-flex;align-items:center;gap:5px;margin-left:auto;padding:3px 8px;font-size:10px;font-weight:500;border-radius:5px;background:var(--tint);color:var(--accent)}
+.channel-state .icon{width:12px;height:12px}
+.pending .channel-state{color:var(--muted);background:var(--soft)}
+.announcement-footer{padding:13px 31px 28px}
+.notice-preference{display:flex;align-items:center;justify-content:center;gap:8px;min-height:42px;margin-bottom:10px;color:var(--muted);font-size:12px;cursor:pointer;user-select:none}
+.notice-preference input{width:15px;height:15px;margin:0;accent-color:var(--accent);cursor:pointer}
+.announcement-footer .button{width:100%;min-height:45px;font-size:14px;border-radius:10px}
+.notice-footnote{margin-top:14px;color:var(--muted);font-size:10px;letter-spacing:.025em;text-align:center}
+[data-theme="light"] .announcement-dialog::backdrop{background:rgba(37,28,53,.35)}
+[data-theme="light"] .announcement-dialog{box-shadow:0 32px 100px rgba(53,34,86,.2)}
+@media(max-width:719px){.topbar-actions{gap:7px}.notice-trigger{width:36px;height:36px;padding:0}.notice-trigger span{display:none}.announcement-content{padding:28px 23px 0}.announcement-footer{padding:10px 23px 24px}.announcement-dialog h2{font-size:23px}.notice-description{font-size:13px}.announcement-dialog{border-radius:20px}}
+@media(max-width:359px){.announcement-content{padding:26px 20px 0}.announcement-footer{padding:10px 20px 22px}.notice-emblem{width:55px;height:57px;margin-bottom:17px}.notice-description{font-size:12px}.notice-channel{font-size:12px}.notice-channels{padding:3px 12px}.announcement-dialog h2{font-size:22px}}
+@media(prefers-reduced-motion:no-preference){.announcement-dialog[open]{animation:notice-enter .26s cubic-bezier(.16,1,.3,1) both}.announcement-dialog[open]::backdrop{animation:notice-backdrop .2s ease both}@keyframes notice-enter{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}@keyframes notice-backdrop{from{opacity:0}to{opacity:1}}}
+@media print{.announcement-dialog,.notice-trigger{display:none!important}body.announcement-open{overflow:visible}}
   </style>
 </head>
 <body>
@@ -254,6 +296,7 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
     <symbol id="i-music" viewBox="0 0 24 24"><path d="M10 18V5l10-2v13M10 9l10-2"/><ellipse cx="6.5" cy="18" rx="3.5" ry="3"/><ellipse cx="16.5" cy="16" rx="3.5" ry="3"/></symbol>
     <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="13" height="13" rx="3"/><path d="m16 11 5-3v11l-5-3"/><circle cx="7" cy="4" r="2"/><circle cx="13" cy="4" r="2"/></symbol>
     <symbol id="i-coolapk" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0v5H4v-5ZM7 4l2 3m8-3-2 3M8 12h.01M16 12h.01M8 18v3m8-3v3"/></symbol>
+    <symbol id="i-announcement" viewBox="0 0 24 24"><path d="M3 10v4h4l10 5V5L7 10H3ZM7 14l2 6h3M21 9v6"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
   </defs></svg>
   <a class="skip-link" href="#resources">跳到资源列表</a>
   <div class="backdrop" id="backdrop" hidden aria-hidden="true"></div>
@@ -272,7 +315,7 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
     <div class="side-bottom"><div class="side-note"><svg class="icon spark" aria-hidden="true"><use href="#i-spark"/></svg><strong>保持好奇，持续探索。</strong><p>关于玩机，也关于热爱。<br>一些好用的东西，与你分享。</p></div><div class="side-tools"><span class="side-signature">JIEHE © 2026</span><button class="icon-button" id="collapseSidebar" aria-label="收起侧栏" aria-expanded="true" title="收起侧栏"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-panel"/></svg></button></div></div>
   </aside>
   <div class="workspace" id="workspace">
-    <header class="topbar"><button class="icon-button menu-toggle" id="menuToggle" aria-label="打开菜单" aria-controls="sidebar" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button><div class="breadcrumb"><span>劫禾的个人空间</span><span class="separator">/</span><span class="current" id="breadcrumbCurrent">总览</span></div><a class="mobile-brand" href="#overview"><span class="brand-mark">劫</span><span>劫禾</span></a><div class="topbar-actions"><a class="update-link" href="https://t.me/standout666" target="_blank" rel="noopener noreferrer">关注更新<svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="icon-button" id="themeToggle" aria-label="切换到浅色模式" title="切换到浅色模式"><svg class="icon icon-sm theme-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="icon icon-sm theme-sun" aria-hidden="true"><use href="#i-sun"/></svg></button></div></header>
+    <header class="topbar"><button class="icon-button menu-toggle" id="menuToggle" aria-label="打开菜单" aria-controls="sidebar" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg></button><div class="breadcrumb"><span>劫禾的个人空间</span><span class="separator">/</span><span class="current" id="breadcrumbCurrent">总览</span></div><a class="mobile-brand" href="#overview"><span class="brand-mark">劫</span><span>劫禾</span></a><div class="topbar-actions"><button class="notice-trigger js-only" id="openAnnouncement" type="button" aria-label="查看资源公告" aria-haspopup="dialog" aria-controls="announcementDialog" title="查看资源公告"><svg class="icon" aria-hidden="true"><use href="#i-announcement"/></svg><span>公告</span></button><a class="update-link" href="https://t.me/standout666" target="_blank" rel="noopener noreferrer">关注更新<svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="icon-button" id="themeToggle" aria-label="切换到浅色模式" title="切换到浅色模式"><svg class="icon icon-sm theme-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="icon icon-sm theme-sun" aria-hidden="true"><use href="#i-sun"/></svg></button></div></header>
     <main class="content" id="mainContent">
       <div class="intro-grid">
       <section id="overview" aria-labelledby="heroTitle" tabindex="-1">
@@ -282,7 +325,7 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
           <p class="hero-description">常用工具、自用内核与实用调度。<br>有用的资源，值得被好好收藏。</p>
           <div class="hero-actions"><a class="button button-primary" href="#resources">探索资源<svg class="icon icon-sm" aria-hidden="true"><use href="#i-down"/></svg></a><a class="button button-quiet" href="https://qm.qq.com/q/IgGt6KPGsa" target="_blank" rel="noopener noreferrer">加入交流群<svg class="icon icon-sm" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
         </div></div>
-        <div class="hero-stats"><div class="hero-stat"><strong data-resource-total data-pad>04</strong><span>资源分类</span></div><span class="stat-divider"></span><div class="hero-stat"><strong>02</strong><span>网盘渠道</span></div><span class="last-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="date-label">资源更新于</span><time datetime="2026-10-11">2026.10.11</time></span></div>
+        <div class="hero-stats"><div class="hero-stat"><strong data-resource-total data-pad>04</strong><span>资源分类</span></div><span class="stat-divider"></span><div class="hero-stat"><strong>01</strong><span>可用网盘</span></div><span class="last-updated"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span class="date-label">资源更新于</span><time datetime="2026-10-11">2026.10.11</time></span></div>
       </section>
       <section class="featured" aria-labelledby="featuredTitle">
         <div class="featured-topline"><span>THE PERSONAL ARCHIVE</span><svg class="icon" aria-hidden="true"><use href="#i-spark"/></svg></div>
@@ -296,7 +339,7 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
           </svg><span class="art-label">A LITTLE COLLECTION. A LOT OF PASSION.</span>
         </div>
         <div class="featured-copy"><div class="eyebrow">ALL IN ONE / 全部收藏</div><h2 id="featuredTitle">劫禾的文件库</h2><p>全部资源，收在这一个入口。</p></div>
-        <div class="featured-actions"><a class="button button-primary" href="https://pan.quark.cn/s/c3ae2e745c5e" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：全部资源（新窗口）</span></a><a class="button button-quiet" href="https://pan.xunlei.com/s/VP3dUJje8_AxJDl0_75gp55nA1?pwd=5f2t#" target="_blank" rel="noopener noreferrer">迅雷网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：全部资源（新窗口）</span></a></div>
+        <div class="featured-actions"><a class="button button-primary" href="https://pan.quark.cn/s/c3ae2e745c5e" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：全部资源（新窗口）</span></a><button class="button button-quiet pending-download" type="button" disabled data-pending-url="https://pan.xunlei.com/s/VP3dUJje8_AxJDl0_75gp55nA1?pwd=5f2t#" title="迅雷网盘暂未上传，请使用夸克网盘">迅雷暂未上传<svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></button></div>
       </section>
       </div>
       <section id="resources" aria-labelledby="resourcesTitle" tabindex="-1"><div class="section-heading"><div><div class="section-title"><span class="heading-line"></span><h2 id="resourcesTitle">资源收藏</h2></div><p>按需探索，找到适合你的那一个。</p></div><button class="text-button js-only" id="expandAll"><svg class="icon icon-sm" aria-hidden="true"><use href="#i-chevron"/></svg><span>全部展开</span></button></div>
@@ -305,10 +348,10 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
           <div class="filters js-only" role="group" aria-label="按资源分类筛选"><button class="filter" data-filter="all" aria-pressed="true">全部资源<small data-resource-total>4</small></button><button class="filter" data-filter="tools" aria-pressed="false">工具</button><button class="filter" data-filter="kernel" aria-pressed="false">内核</button><button class="filter" data-filter="tuning" aria-pressed="false">调度</button><button class="filter" data-filter="root" aria-pressed="false">Root</button></div>
           <noscript><p class="no-script">点击资源标题即可展开下载地址。</p></noscript>
           <div class="resource-list" id="resourceList">
-            <details class="resource" data-category="tools" data-keywords="玩机资源 应用 工具 tools app APK" open><summary aria-controls="resourceTools"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>玩机资源</h3><span class="resource-category">TOOLS</span></div><p>常用玩机应用与工具，按需取用。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceTools"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/9d2eaefaf7ed" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：玩机资源（新窗口）</span></a><a class="button" href="https://pan.xunlei.com/s/VP2rcjrF_wld3Es-NPWL-nYDA1?pwd=sdde#" target="_blank" rel="noopener noreferrer">迅雷网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：玩机资源（新窗口）</span></a></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
-            <details class="resource" data-category="kernel" data-keywords="自用耳机 自用内核 kernel" ><summary aria-controls="resourceKernel"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-chip"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>自用内核</h3><span class="resource-category">KERNEL</span></div><p>自用内核收藏，方便查找与下载。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceKernel"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/7dd11b1b77f5" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：自用内核（新窗口）</span></a><a class="button" href="https://pan.xunlei.com/s/VP2rcy0N_JlqbnaHmcHC_y-rA1?pwd=b8tj#" target="_blank" rel="noopener noreferrer">迅雷网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：自用内核（新窗口）</span></a></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
-            <details class="resource" data-category="tuning" data-keywords="通用调度 调整 方案 tuning" ><summary aria-controls="resourceTuning"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-tuning"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>通用调度</h3><span class="resource-category">TUNING</span></div><p>个人调整的调度方案，集中分享。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceTuning"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/97ec2d5ed292" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：通用调度（新窗口）</span></a><a class="button" href="https://pan.xunlei.com/s/VP2rdZaRlLNA_4rKqfD_PY-FA1?pwd=v25c#" target="_blank" rel="noopener noreferrer">迅雷网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：通用调度（新窗口）</span></a></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
-            <details class="resource" data-category="root" data-keywords="通用隐藏 root 环境 隐藏" ><summary aria-controls="resourceRoot"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>通用隐藏</h3><span class="resource-category">ROOT</span></div><p>Root 环境隐藏相关资源。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceRoot"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/88d8390eabed" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：通用隐藏（新窗口）</span></a><a class="button" href="https://pan.xunlei.com/s/VP2rdgr3oml32u08hZ3yCviVA1?pwd=7tnb#" target="_blank" rel="noopener noreferrer">迅雷网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：通用隐藏（新窗口）</span></a></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
+            <details class="resource" data-category="tools" data-keywords="玩机资源 应用 工具 tools app APK" open><summary aria-controls="resourceTools"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>玩机资源</h3><span class="resource-category">TOOLS</span></div><p>常用玩机应用与工具，按需取用。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceTools"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/9d2eaefaf7ed" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：玩机资源（新窗口）</span></a><button class="button pending-download" type="button" disabled data-pending-url="https://pan.xunlei.com/s/VP2rcjrF_wld3Es-NPWL-nYDA1?pwd=sdde#" title="迅雷网盘暂未上传，请使用夸克网盘">迅雷暂未上传<svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></button></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
+            <details class="resource" data-category="kernel" data-keywords="自用耳机 自用内核 kernel" ><summary aria-controls="resourceKernel"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-chip"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>自用内核</h3><span class="resource-category">KERNEL</span></div><p>自用内核收藏，方便查找与下载。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceKernel"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/7dd11b1b77f5" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：自用内核（新窗口）</span></a><button class="button pending-download" type="button" disabled data-pending-url="https://pan.xunlei.com/s/VP2rcy0N_JlqbnaHmcHC_y-rA1?pwd=b8tj#" title="迅雷网盘暂未上传，请使用夸克网盘">迅雷暂未上传<svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></button></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
+            <details class="resource" data-category="tuning" data-keywords="通用调度 调整 方案 tuning" ><summary aria-controls="resourceTuning"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-tuning"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>通用调度</h3><span class="resource-category">TUNING</span></div><p>个人调整的调度方案，集中分享。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceTuning"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/97ec2d5ed292" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：通用调度（新窗口）</span></a><button class="button pending-download" type="button" disabled data-pending-url="https://pan.xunlei.com/s/VP2rdZaRlLNA_4rKqfD_PY-FA1?pwd=v25c#" title="迅雷网盘暂未上传，请使用夸克网盘">迅雷暂未上传<svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></button></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
+            <details class="resource" data-category="root" data-keywords="通用隐藏 root 环境 隐藏" ><summary aria-controls="resourceRoot"><span class="resource-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div class="resource-summary"><div class="resource-title"><h3>通用隐藏</h3><span class="resource-category">ROOT</span></div><p>Root 环境隐藏相关资源。</p></div><svg class="icon resource-chevron" aria-hidden="true"><use href="#i-chevron"/></svg></summary><div class="resource-body" id="resourceRoot"><div class="resource-downloads"><a class="button" href="https://pan.quark.cn/s/88d8390eabed" target="_blank" rel="noopener noreferrer">夸克网盘<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg><span class="sr-only">：通用隐藏（新窗口）</span></a><button class="button pending-download" type="button" disabled data-pending-url="https://pan.xunlei.com/s/VP2rdgr3oml32u08hZ3yCviVA1?pwd=7tnb#" title="迅雷网盘暂未上传，请使用夸克网盘">迅雷暂未上传<svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></button></div><p class="tutorial-status"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>配套教程整理中</p></div></details>
           </div>
           <div class="empty-state" id="emptyState" hidden><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><h3>还没有找到这份资源</h3><p>试试其他关键词，或查看全部收藏。</p><button class="button" id="resetFilters">查看全部资源</button></div>
           <div class="results-meta"><span id="resultCount" role="status" aria-live="polite" aria-atomic="true">共 4 项资源</span><span class="resource-hint"><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg>点击资源展开下载方式</span></div>
@@ -322,6 +365,24 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
   </div>
   <button class="icon-button back-top" id="backTop" aria-label="回到顶部" hidden><svg class="icon" style="transform:rotate(180deg)" aria-hidden="true"><use href="#i-down"/></svg></button>
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <dialog class="announcement-dialog" id="announcementDialog" aria-labelledby="announcementTitle" aria-describedby="announcementDescription">
+    <div class="announcement-content">
+      <button class="icon-button announcement-close" type="button" id="closeAnnouncement" aria-label="关闭公告"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+      <div class="notice-emblem" aria-hidden="true"><svg class="icon"><use href="#i-folder"/></svg><span class="notice-emblem-badge"><svg class="icon"><use href="#i-announcement"/></svg></span></div>
+      <p class="notice-eyebrow">RESOURCE UPDATE / 下载说明</p>
+      <h2 id="announcementTitle">资源上传公告</h2>
+      <p class="notice-description" id="announcementDescription">目前资源仅上传至<strong>夸克网盘</strong>。<br>迅雷网盘暂未上传，请通过夸克网盘下载。</p>
+      <div class="notice-channels" aria-label="网盘上传状态">
+        <div class="notice-channel"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg><span>夸克网盘</span><span class="channel-state"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>已上传</span></div>
+        <div class="notice-channel pending"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span>迅雷网盘</span><span class="channel-state">暂未上传</span></div>
+      </div>
+    </div>
+    <div class="announcement-footer">
+      <label class="notice-preference"><input type="checkbox" id="dismissAnnouncementToday">今天不再提醒</label>
+      <button class="button button-primary" type="button" id="acknowledgeAnnouncement" autofocus>我知道了</button>
+      <p class="notice-footnote">可随时通过页面右上角「公告」重新查看</p>
+    </div>
+  </dialog>
   <dialog class="copy-dialog" id="copyDialog" aria-labelledby="copyTitle"><h2 id="copyTitle">手动复制</h2><p>浏览器暂未允许自动复制，可以选择下方内容复制。</p><input id="copyValue" readonly aria-label="待复制的内容"><form method="dialog"><button class="button button-primary">完成</button></form></dialog>
   <script>
   (() => {
@@ -464,6 +525,7 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
     root.classList.toggle('sidebar-compact', safeRead('jh-mini') === '1'); syncCompact();
     $('collapseSidebar').addEventListener('click', () => { root.classList.toggle('sidebar-compact'); safeStore('jh-mini', root.classList.contains('sidebar-compact') ? '1' : '0'); syncCompact(); });
     document.addEventListener('keydown', event => {
+      if (document.querySelector('dialog[open]')) return;
       if (menuOpen) {
         if (event.key === 'Escape') { event.preventDefault(); setMenu(false); return; }
         if (event.key === 'Tab') {
@@ -487,6 +549,49 @@ html.sidebar-compact{--sidebar-width:86px}.sidebar-compact .sidebar{padding-left
     window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, {passive:true});
     onScroll();
     $('backTop').addEventListener('click', () => { window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}); setActiveNavigation('overview'); $('overview').focus({preventScroll:true}); });
+
+    const announcement = $('announcementDialog');
+    const announcementKey = 'jh-announcement-quark-only-v1';
+    const announcementDay = () => {
+      const now = new Date();
+      return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
+    };
+    function showAnnouncement() {
+      if (announcement.open || $('copyDialog').open) return;
+      if (menuOpen) setMenu(false, false);
+      $('dismissAnnouncementToday').checked = safeRead(announcementKey) === announcementDay();
+      announcement.showModal();
+      document.body.classList.add('announcement-open');
+      $('acknowledgeAnnouncement').focus({preventScroll:true});
+    }
+    function closeAnnouncement() { if (announcement.open) announcement.close(); }
+    $('openAnnouncement').addEventListener('click', showAnnouncement);
+    $('closeAnnouncement').addEventListener('click', closeAnnouncement);
+    $('acknowledgeAnnouncement').addEventListener('click', closeAnnouncement);
+    announcement.addEventListener('close', () => {
+      if ($('dismissAnnouncementToday').checked) safeStore(announcementKey, announcementDay());
+      else { try { localStorage.removeItem(announcementKey); } catch (_) {} }
+      document.body.classList.remove('announcement-open');
+      $('openAnnouncement').focus({preventScroll:true});
+    });
+    announcement.addEventListener('keydown', event => {
+      if (event.key !== 'Tab') return;
+      const controls = [...announcement.querySelectorAll('button:not(:disabled), input:not(:disabled), a[href], [tabindex="0"]')].filter(control => control.getClientRects().length);
+      const first = controls[0], last = controls[controls.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
+    let pressedBackdrop = false;
+    function outsideAnnouncement(event) {
+      const bounds = announcement.getBoundingClientRect();
+      return event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom;
+    }
+    announcement.addEventListener('pointerdown', event => { pressedBackdrop = event.target === announcement && outsideAnnouncement(event); });
+    announcement.addEventListener('click', event => {
+      if (pressedBackdrop && event.target === announcement && outsideAnnouncement(event)) closeAnnouncement();
+      pressedBackdrop = false;
+    });
+    if (safeRead(announcementKey) !== announcementDay()) showAnnouncement();
   })();
   </script>
 </body>
